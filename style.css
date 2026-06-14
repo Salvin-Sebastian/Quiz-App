@@ -178,11 +178,25 @@ p {
   background: #1e1b4b;
   border: 1px solid var(--card-border);
   border-radius: 12px;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 200px;
   display: none;
   z-index: 10;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
   animation: slideDown 0.2s ease forwards;
+}
+
+.dropdown-options::-webkit-scrollbar {
+  width: 6px;
+}
+.dropdown-options::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.05);
+  border-radius: 3px;
+}
+.dropdown-options::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
 }
 
 @keyframes slideDown {
