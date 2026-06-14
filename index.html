@@ -20,13 +20,16 @@
         <p>Select a category and test your knowledge!</p>
         
         <div class="category-selection">
-          <label for="category-select">Choose Category:</label>
-          <select id="category-select" class="dropdown">
-            <option value="All">All Categories</option>
-            <option value="IT">IT & Web Development</option>
-            <option value="General">General Knowledge</option>
-            <option value="Automotive">Automotive</option>
-          </select>
+          <label>Choose Category:</label>
+          <div class="custom-dropdown" id="custom-category-dropdown">
+            <div class="dropdown-selected" id="dropdown-selected">All Categories</div>
+            <div class="dropdown-options" id="dropdown-options">
+              <div class="dropdown-option selected" data-value="All">All Categories</div>
+              <div class="dropdown-option" data-value="IT">IT & Web Development</div>
+              <div class="dropdown-option" data-value="General">General Knowledge</div>
+              <div class="dropdown-option" data-value="Automotive">Automotive</div>
+            </div>
+          </div>
         </div>
 
         <button id="start-btn" class="btn primary-btn">Start Quiz</button>

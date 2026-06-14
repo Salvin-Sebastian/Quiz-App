@@ -28,14 +28,45 @@ startBtn.addEventListener('click', startQuiz);
 nextBtn.addEventListener('click', handleNext);
 restartBtn.addEventListener('click', restartQuiz);
 
-const categorySelect = document.getElementById('category-select');
+// Dropdown Logic
+const customDropdown = document.getElementById('custom-category-dropdown');
+const dropdownSelected = document.getElementById('dropdown-selected');
+const dropdownOptions = document.getElementById('dropdown-options');
+const optionsList = document.querySelectorAll('.dropdown-option');
+
+let selectedCategoryValue = 'All'; // default
+
+dropdownSelected.addEventListener('click', () => {
+  customDropdown.classList.toggle('open');
+});
+
+optionsList.forEach(option => {
+  option.addEventListener('click', () => {
+    // Update selected text and value
+    dropdownSelected.textContent = option.textContent;
+    selectedCategoryValue = option.getAttribute('data-value');
+    
+    // Update active class
+    optionsList.forEach(opt => opt.classList.remove('selected'));
+    option.classList.add('selected');
+    
+    // Close dropdown
+    customDropdown.classList.remove('open');
+  });
+});
+
+// Close dropdown if clicked outside
+document.addEventListener('click', (e) => {
+  if (!customDropdown.contains(e.target)) {
+    customDropdown.classList.remove('open');
+  }
+});
 
 function startQuiz() {
-  const selectedCategory = categorySelect.value;
-  if (selectedCategory === "All") {
+  if (selectedCategoryValue === "All") {
     questions = Object.values(questionBank).flat();
   } else {
-    questions = questionBank[selectedCategory];
+    questions = questionBank[selectedCategoryValue];
   }
   
   // Shuffle questions for a dynamic experience
