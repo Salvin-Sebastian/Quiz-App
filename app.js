@@ -1,4 +1,5 @@
 // State
+let questions = []; // Active questions for the current quiz run
 let currentQuestionIndex = 0;
 let score = 0;
 let userAnswers = []; // Array to store user's answers for the summary
@@ -27,7 +28,19 @@ startBtn.addEventListener('click', startQuiz);
 nextBtn.addEventListener('click', handleNext);
 restartBtn.addEventListener('click', restartQuiz);
 
+const categorySelect = document.getElementById('category-select');
+
 function startQuiz() {
+  const selectedCategory = categorySelect.value;
+  if (selectedCategory === "All") {
+    questions = Object.values(questionBank).flat();
+  } else {
+    questions = questionBank[selectedCategory];
+  }
+  
+  // Shuffle questions for a dynamic experience
+  questions.sort(() => Math.random() - 0.5);
+
   currentQuestionIndex = 0;
   score = 0;
   userAnswers = [];
